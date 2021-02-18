@@ -19,6 +19,8 @@ sentiment_analyser = SentimentAnalyser()
 reddit_data_path = Path('sentiment_analysis/reddit_data/')
 
 app = dash.Dash(__name__)
+server = app.server
+
 app.layout = app_components.layout.layout
 
 # get submissions and stock price data
