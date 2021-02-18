@@ -36,3 +36,4 @@ run ```python app.py``` from the terminal then navitage to ```http://127.0.0.1:8
 * Implament direct querying to the `RedditAPI`
 * Migrate to an SQL database using [SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy) as an ORM
 * Add more features! Dynamicly tune VADER, regress sentiment with closing prices, analyse selftext etc.
+* Implament tests
