@@ -22,12 +22,11 @@ search_bar = html.Div([
             options=[
                 {'label': 'TSLA', 'value': 'TSLA'},
                 {'label': 'GME', 'value': 'GME'},
+                {'label': 'AMC', 'value': 'AMC'},
                 {'label': 'AAPL', 'value': 'AAPL'},
                 {'label': 'AMZN', 'value': 'AMZN'},
                 {'label': 'FB', 'value': 'FB'},
                 {'label': 'SPY', 'value': 'SPY'}
-
-
             ], value='TSLA')
     ], style=styles.input_form_style),
         
