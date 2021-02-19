@@ -15,7 +15,7 @@
 * Analyse the sentiment of reddit submissions using the VADER model with a customised lexicon
 
 ## Data
- Reddit submissions are retrieved using the [Pushshift](https://github.com/pushshift/api) and [PRAW](https://github.com/praw-dev/praw) API's. The submission titles are preprocessed and analysed using [NLTK](https://github.com/nltk/nltk) for sentiment scores.
+ Reddit submissions are retrieved using the [Pushshift](https://github.com/pushshift/api) and [PRAW](https://github.com/praw-dev/praw) API's. The submission titles are preprocessed and analysed using [NLTK](https://github.com/nltk/nltk).
 
  ## Installation
 ```bash
