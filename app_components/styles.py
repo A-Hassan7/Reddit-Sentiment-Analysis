@@ -6,7 +6,7 @@ charts_style = {
     'padding': '30px',
     'background': '#f9f9f9',
     'boxShadow': '6px 6px 6px lightgray',
-    'height': '637px',
+    'height': '800px',
     'overflow': 'scroll'
 }
 
