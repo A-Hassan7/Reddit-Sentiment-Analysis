@@ -1,9 +1,10 @@
+import string
 from datetime import datetime
 
 import pandas as pd
 from pandas_datareader import data
 
-from sentiment_analysis.API.reddit import RedditAPI
+from sentiment_analysis.platform_api import RedditAPI
 
 
 def merge_sentiment_submissions(
@@ -102,3 +103,7 @@ def get_data(
     )
     
     return submissions, price_data
+
+
+def strip_punctuation(text):
+    return text.translate(str.maketrans('', '', string.punctuation))

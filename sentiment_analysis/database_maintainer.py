@@ -3,9 +3,8 @@ import requests
 import pandas as pd
 
 from config import Loggers
-
-from . import utils, models
-from .database_manager import DatabaseManager
+from sentiment_analysis import utils
+from sentiment_analysis.database_manager import DatabaseManager
 
 
 class DatabaseMaintainer:

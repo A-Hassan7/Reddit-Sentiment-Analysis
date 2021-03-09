@@ -2,16 +2,16 @@
 Classes to manage the data pipelines for each social media platform
 """
 
-from datetime import datetime
 from abc import ABC, abstractmethod
+from datetime import datetime
 
 import pandas as pd
-from config import Loggers
-from database.database_manager import DatabaseManager
 
-from .reddit import RedditAPI
-from . import utils
-from database import models
+from config import Loggers
+from sentiment_analysis import utils
+from sentiment_analysis._database import models
+from sentiment_analysis.platform_api import RedditAPI
+from sentiment_analysis.database_manager import DatabaseManager
 
 
 class PlatformManager(ABC):
@@ -299,11 +299,14 @@ class RedditManager(PlatformManager):
         submissions = self.scraper.get_submissions(params)
         processed_submissions = self.process_submissions(submissions)
 
-        # Update submissions
-        # Pushshift does not always have updated data
-
         # Process comments if there are new submissions
         if not processed_submissions.empty:
+            
+            # Insert submissions into database
+            self.database_manager.insert_values(
+                model=models.RedditSubmissions,
+                values=processed_submissions
+            )
 
             # Get comments and process them
             comments = self.scraper.get_comments(
@@ -311,31 +314,25 @@ class RedditManager(PlatformManager):
             )
             processed_comments = self.process_comments(comments)
 
-            # Insert submissions and comments if there are new comments
+            # Insert comments if there are new comments
             if not processed_comments.empty:
 
-                # Insert submissions into database
-                self.database_manager.insert_values(
-                    model=models.RedditSubmissions,
-                    values=processed_submissions
-                )
-
-                # Insert comments into reddit_comments table in database
+                # Insert comments into database
                 self.database_manager.insert_values(
                     model=models.RedditComments,
                     values=processed_comments
                 )
 
 
-reddit_manager = RedditManager()
-# Fetch data
-reddit_manager.fetch_data(
-    ticker='AAPL',
-    limit=100,
-    before=datetime(2021,1,30),
-    after=datetime(2021,1,1),
-    subreddits=['wallstreetbets', 'investing']
-)
-# Update existing data
-reddit_manager.update_submissions(['GE'], [datetime(2021, 1, 1), datetime(2021, 1, 30)])
+# reddit_manager = RedditManager()
+# # Fetch data
+# reddit_manager.fetch_data(
+#     ticker='GME',
+#     limit=20,
+#     before=datetime(2021,3,8),
+#     after=datetime(2021,2,1),
+#     subreddits=['wallstreetbets', 'investing']
+# )
+# # Update existing data
+# reddit_manager.update_submissions(['GME'], [datetime(2021, 3, 7), datetime(2021, 3, 8)])
 

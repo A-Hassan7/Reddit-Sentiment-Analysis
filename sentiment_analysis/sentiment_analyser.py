@@ -13,7 +13,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from wordcloud import WordCloud
 
 from config import Loggers
-from . import additional_stopwords, custom_lexicon
+from sentiment_analysis._analyser import additional_stopwords, custom_lexicon
 
 # Set path to nltk data 
 nltk.data.path.append(Path('sentiment_analysis/nltk_data'))

@@ -1,12 +1,9 @@
 import pandas as pd
-from sqlalchemy.engine import create_engine
 from sqlalchemy.engine.url import URL
-from sqlalchemy.orm import sessionmaker
 
 from config import DatabaseConfig, Loggers
-
-from . import models
-from .connection import DBConnection
+from sentiment_analysis._database import models
+from sentiment_analysis._database.connection import DBConnection
 
 # database connection url
 DBURL = URL(
@@ -71,7 +68,7 @@ class DatabaseManager:
             model (models.model):
                 An ORM model representing a table from database.models
             values (pd.DataFrame): Pandas dataframe of values to update
-            on (str): column to match
+            on (str): column to merge on
         """
         
         original = self.get_values(model)
@@ -95,7 +92,16 @@ class DatabaseManager:
             )
         
     def get_values(self, model, filters=None):
-        #TODO: implament .filter for conditional querying
+        """Get values from database
+
+        Args:
+            model (models.model):
+                An ORM model representing a table from database.models
+            filters (list, optional): List of filters to apply
+
+        Returns:
+            [pd.DataFrame]: pandas dataframe of requested data
+        """
         
         filters = [] if not filters else filters
         with self.Connection as session:

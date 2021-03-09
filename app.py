@@ -12,10 +12,12 @@ from pandas_datareader import data
 
 import app_components.layout
 import app_components.charts
-from sentiment_analysis.sentiment import utils
-from sentiment_analysis.sentiment.sentiment_analyser import SentimentAnalyser
+from sentiment_analysis import utils
+from sentiment_analysis.platform_managers import RedditManager
+from sentiment_analysis.sentiment_analyser import SentimentAnalyser
 
 sentiment_analyser = SentimentAnalyser()
+reddit_manager = RedditManager()
 reddit_data_path = Path('sentiment_analysis/reddit_data/')
 
 app = dash.Dash(__name__)
@@ -54,7 +56,7 @@ def get_data(submit, minimum_upvote, ticker):
     preprocessed_text = sentiment_analyser.preprocess_text(text)
     
     # set dates for stock price data
-    start = submissions.created_utc.min().date() - timedelta(weeks=2)
+    start = submissions.created_utc.min().date() - timedelta(weeks=2)1
     end = submissions.created_utc.max().date() + timedelta(weeks=2)
 
     # get historical stock price data
