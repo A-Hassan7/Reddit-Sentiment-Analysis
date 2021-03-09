@@ -56,7 +56,7 @@ def get_data(submit, minimum_upvote, ticker):
     preprocessed_text = sentiment_analyser.preprocess_text(text)
     
     # set dates for stock price data
-    start = submissions.created_utc.min().date() - timedelta(weeks=2)1
+    start = submissions.created_utc.min().date() - timedelta(weeks=2)
     end = submissions.created_utc.max().date() + timedelta(weeks=2)
 
     # get historical stock price data
