@@ -16,6 +16,7 @@ with open(logging_config_path, 'r') as f:
     config = yaml.safe_load(f.read())
     logging.config.dictConfig(config)
 
+
 class PRAWConfig:
     """
     Set configuration variables from .env file
@@ -25,9 +26,18 @@ class PRAWConfig:
     REDDIT_CLIENT_SECRET = os.getenv('REDDIT_CLIENT_SECRET')
     REDDIT_USER_AGENT = os.getenv('REDDIT_USER_AGENT')
 
+
 class Loggers:
     """
     Provides pre-configured loggers
     """
     console = logging.getLogger('console')
+
+
+class DatabaseConfig:
+    """
+    Set database credentials
+    """
+    DATABASE_DRIVER_NAME = os.getenv('DATABASE_DRIVER_NAME')
+    DATABASE_NAME = os.getenv('DATABASE_NAME')
     
