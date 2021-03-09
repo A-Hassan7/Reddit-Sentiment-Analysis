@@ -94,11 +94,12 @@ class DatabaseManager:
                 mappings=merged.to_dict(orient='records')
             )
         
-    def get_values(self, model):
+    def get_values(self, model, filters=None):
         #TODO: implament .filter for conditional querying
         
+        filters = [] if not filters else filters
         with self.Connection as session:
-            query = session.query(model)
+            query = session.query(model).filter(*filters)
         
         values = pd.read_sql(
             sql=query.statement,

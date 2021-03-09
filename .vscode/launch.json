@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Database Maintainer",
+            "type": "python",
+            "request": "launch",
+            "module": "database.database_maintainer"
+        },
+        {
+            "name": "Platform Manager",
+            "type": "python",
+            "request": "launch",
+            "module": "sentiment_analysis.API.platform_managers"
+        },
+        {
             "name": "Database Manager",
             "type": "python",
             "request": "launch",

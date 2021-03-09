@@ -184,10 +184,6 @@ class RedditSubmissions(Base):
         DateTime(timezone=True),
         nullable=False
     )
-    url = Column(
-        Text,
-        nullable=False
-    )
     title = Column(Text)
     score = Column(Integer)
     
